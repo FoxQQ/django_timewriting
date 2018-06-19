@@ -25,7 +25,7 @@ SECRET_KEY = '_4yltx9=!=xsm)p6&32rbq1p7af-wpcfebja1hu@qqf%7l)$zi'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['djtime.herokuapp.com']
 
 
 # Application definition
