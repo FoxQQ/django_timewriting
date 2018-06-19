@@ -1,0 +1,74 @@
+{% extends 'snippets/base.html' %}
+{% load extra_filter %}
+{%block content %}
+
+<h1>View entries</h1>
+{%if result == False %}
+	<div class="alert alert-danger" role="alert">Error: Entry already exists. Please use Editmode from the Table below!</div>
+{%elif result == True %}
+	<div class="alert alert-success" role="alert">Entry saved!</div>
+{%endif%}
+<style type="text/css">
+form {
+     display:inline;
+     margin:0px;
+     padding:0px;
+}
+</style>
+<div class="btn-group btn-group-xs" role="group" aria-label="Large button group"> 
+<form type='GET'>
+	<input type='date' name='day' value='{% now "Y-m-d" %}'/>
+	<input type='submit' name='week' value='week' class='btn btn-primary'/>
+	<input type='submit' name='month' value='month' class='btn btn-primary'/>	
+</form>
+
+<form  type='GET' >
+	<input type='hidden' name='day' value='all'/>
+	<input type='submit' value='all' class='btn btn-primary'/>
+</form>
+</div><br><br>
+{%if weeklysum and weeklysum >= 40%}
+	<div class="alert alert-success" role="alert">Weekly Sum: {{weeklysum}}</div>
+{%elif weeklysum%}
+	<div class="alert alert-danger" role="alert">Weekly Sum: {{weeklysum}}</div>
+{%endif%}
+{%if deleteresult%}
+	{%if deleteresult == 'success'%}
+		<div class="alert alert-success" role="alert">Entry deleted!</div>
+	{%else%}
+		<div class="alert alert-danger" role="alert">{{deleteresult}}</div>
+	{%endif%}
+{%endif%}
+<table class='table table-hover table-dark'> 	
+	<thead>
+		<tr>
+			<th></th>
+			<th>ID</td>
+			<th>User</td>
+			<th>Date</td>
+			<th>Start Time</td>
+			<th>End Time</td>
+			<th>Location 1</td>
+			<th>Location 2</td>			
+		</tr>
+	</thead>
+	<tbody>
+	{%for entry in entries%}
+		<tr  {% if entry.entry_id in ids %}style='background-color:#ccffcc'{%endif%}>
+			<td><a href='{%url 'add_day'%}?edit={{entry.entry_id}}' alt='edit' title='edit'><i class="gglyphicon glyphicon-pencil"></i></a>&nbsp;
+				<a href='{%url 'your_days'%}?delete={{entry.entry_id}}' alt='delete' title='delete'><i class="glyphicon glyphicon-remove"></i></a>
+			</td>
+			<td>{{entry.entry_id}}</td>
+			<td>{{entry.user}}</td>
+			<td>{{entry.start_time|date:"d.m.Y"}}
+			<td>{{entry.start_time|date:"H:i"}}</td>
+			<td>{{entry.end_time|date:"H:i"}}</td>
+			<td>{{entry.location1}}</td>
+			<td>{{entry.location2}}</td>
+		</tr>
+	{%endfor%}
+	</tbody>
+</table>
+<div align='center'><a name='previous' href='{%url 'your_days'%}?day={%if entries%}{{entries.first.end_time|subseven|date:"Y-m-d"}}{%endif%}'>Previous</a> 
+| <a name='previous' href='{%url 'your_days'%}?day={%if entries%}{{entries.first.end_time|addseven|date:"Y-m-d"}}{%endif%}'>Next</a></div>
+{%endblock%}

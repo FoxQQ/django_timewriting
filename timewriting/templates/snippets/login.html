@@ -1,0 +1,17 @@
+{% extends 'snippets/base.html' %}
+
+{%block content %}
+{%if credentials%}
+Username or password are invalid!
+<br>
+{%endif%}
+<form method='POST' action=''>
+{% csrf_token %}
+	<label>Username</label>
+	<input name='user' type='text' />
+	<label>Password</label>
+	<input name='password' type='password' />
+	<input type='submit' value='login' class='btn btn-primary'/>
+</form>
+
+{% endblock %}

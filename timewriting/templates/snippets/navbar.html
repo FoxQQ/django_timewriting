@@ -1,0 +1,26 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+	<br><div class='container'>
+	<div class='navbar-header'>
+		<a href='{%url 'home'%}'><button class='btn btn-primary' value='Home'>Home</button></a>
+		<a href='{%url 'add_day'%}'><button class='btn btn-primary' value='Add' />Add</button></a>
+		<a href='{%url 'your_days'%}'><button class='btn btn-primary' value='View' />View</button></a>
+		<a href='{%url 'statistics'%}'><button class='btn btn-primary' value='View' />Visualize</button></a>
+		
+	
+	</div>
+	<div class='navbar-right'>
+	{%if user.is_authenticated%}
+		<span style='color:white'>Signed in as {{user}}</span>
+			<a href='{%url 'logout'%}'><button class='btn btn-primary' value='View' />Sign out</button></a>
+		
+	{% else %}
+	
+			<a href='{%url 'login'%}'><button class='btn btn-primary' value='View' />Sign in</button></a>
+	
+	{%endif%}
+	</div>
+	</div>
+	<br>
+</nav >
+	<br><br>		<br><br><br><br>
+

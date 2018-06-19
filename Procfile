@@ -1,0 +1,1 @@
+web: gunicorn dj_time.wsgi --log-file -

@@ -1,0 +1,40 @@
+{%extends 'snippets/base.html'%}
+
+{%block content%}
+
+<h1>Visualisation</h1>
+<table class='table table-hover table-dark'>
+	<thead>
+	<tr>
+		<td>Avg: {{avg}}<td>
+		<td>Min: {{min}}<td>
+		<td>Max: {{max}}<td>
+		<td>Std: {{std}}<td>
+	</tr>
+	</thead>
+</table>
+<canvas id="myChart"></canvas>
+<script>
+var ctx = document.getElementById('myChart').getContext('2d');
+var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'line',
+
+    // The data for our dataset
+    data: {
+        labels: [{%for i in xdata%}'{{i}}',{%endfor%}],
+        datasets: [{
+            label: "Time Deltas",
+            backgroundColor: 'rgb(100, 200, 100)',
+            borderColor: 'rgb(0, 0, 0)',
+            data: {{ydata}},
+            lineTension: 0.8,
+            cubicInterpolationMode: 'default'
+        }]
+    },
+
+    // Configuration options go here
+    options: {}
+});
+</script>
+{%endblock%} 
