@@ -2,3 +2,5 @@ pip
 gunicorn
 numpy
 django
+dj_database_url
+psycopg2
