@@ -1,1 +1,1 @@
-web: gunicorn dj_time.wsgi --log-file -
+web: gunicorn dj_time.wsgi
