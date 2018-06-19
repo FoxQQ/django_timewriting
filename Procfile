@@ -1,1 +1,1 @@
-web: gunicorn dj_time.wsgi
+web: gunicorn dj_time.wsgi --preload
