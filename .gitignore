@@ -1,1 +1,4 @@
-*.pyc 
+local.py 
+*.pyc
+db.sqlite3
+old*
