@@ -14,6 +14,12 @@ form {
      margin:0px;
      padding:0px;
 }
+i{
+	color:#337ab7;
+}
+i:hover{
+	color:#286090;
+}
 </style>
 <div class="btn-group btn-group-xs" role="group" aria-label="Large button group"> 
 <form type='GET'>
@@ -56,9 +62,9 @@ form {
 	<tbody>
 	{%for entry in entries%}
 		<tr  {% if entry.entry_id == todayid%}style='background-color:#ccffcc'{%endif%}>
-			<td><a href='{%url 'add_day'%}?edit={{entry.entry_id}}' alt='edit' title='edit'><i class="gglyphicon glyphicon-pencil"></i></a>&nbsp;
+			<td><a href='{%url 'add_day'%}?edit={{entry.entry_id}}' alt='edit' title='edit'><i s class="gglyphicon glyphicon-pencil"></i></a>&nbsp;
 				<a href='{%url 'your_days'%}?delete={{entry.entry_id}}' alt='delete' title='delete'><i class="glyphicon glyphicon-remove"></i></a>
-				{% if entry.entry_id == todayid%}<i class="glyphicon glyphicon-time"></i>{%endif%}
+				{% if entry.entry_id == todayid%}<i class="glyphicon glyphicon-time" ></i>{%endif%}
 			</td>
 			<td>{{entry.entry_id}}</td>
 			<td>{{entry.user}}</td>

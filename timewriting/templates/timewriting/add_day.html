@@ -27,10 +27,18 @@
 		<input id='location2' class="form-control" type='text' name='loc2' value='{{entry.location2}}'></input><br>
 		
 	</div>
-	<!--<div class='form-group col-md-6'>
-		<label for='edit'>Editmode</label> 
-		<input id='edit' type='checkbox'  value='' onclick="return false;" {%if entry%}checked{%endif%}></input>
-	</div>-->
+	<div class='form-group col-md-6'>
+		<table>
+			<tr>
+				<td><label for='popweek'>Populate remaining week?</label> 
+				<td><input id='popweek' type='checkbox'  name='popweek' value='True'></input><br>
+			<tr>
+				<td><label for='daytype'>Day type?</label>
+				<td><select id='daytype' name='daytype'>
+						<option value='standard'>Standard</option>
+				</select>
+		</table>
+	</div>
 	<div class='form-group col-md-6'>
 	 	<input type='hidden' name='editmode' value='{%if entry%}{{entry.entry_id}}{%else%}False{%endif%}'></input><br>
 		<button class='btn btn-primary' type='submit' name='submit' value='Submit'>Submit</button>

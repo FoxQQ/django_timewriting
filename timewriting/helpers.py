@@ -48,3 +48,31 @@ def getMonthWorkSum(start_time, user):
     for x in timedeltas:
         xsum+=x.seconds
     return xsum/3600, ids
+
+def populateWeek(user, start_time, end_time, loc1, loc2):
+    
+    print('given to function:',start_time, end_time, loc1, loc2)
+    start_time=datetime.datetime.strptime(start_time,'%Y-%m-%dT%H:%M')
+    end_time=datetime.datetime.strptime(end_time,'%Y-%m-%dT%H:%M')
+    weekday=start_time.weekday()
+    firstday=(start_time-datetime.timedelta(weekday))
+    for i in range(7):
+        iday=firstday+datetime.timedelta(i)
+        if(len(TimePlot.objects.filter(user=user).filter(start_time__year=iday.year,start_time__month=iday.month,start_time__day=iday.day))>0):
+            continue
+        else:
+            entry=TimePlot()
+            start=iday
+            end=iday
+            if(i<5):
+                start=start.replace(hour=start_time.hour,minute=start_time.minute)
+                end=end.replace(hour=end_time.hour,minute=end_time.minute)
+            else:
+                start=start.replace(hour=0,minute=0)
+                end=end.replace(hour=0,minute=0)
+                print('weekend',start)
+                
+            entry.create(user, str(start), str(end), loc1, loc2)
+    
+    
+    

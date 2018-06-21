@@ -114,6 +114,8 @@ def show_days(request):
             context['result']=True
         else:
             result = entry.create(user, start_time, end_time, loc1, loc2)
+            if('popweek' in request.POST):
+                helpers.populateWeek(user, start_time, end_time, loc1, loc2)
             context['result']=result
         
     if('day' in request.GET and request.GET['day']!='' and request.GET['day']!='all'):
