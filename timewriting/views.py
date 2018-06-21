@@ -93,8 +93,9 @@ def show_days(request):
     template=loader.get_template('timewriting/your_days.html')
     user=request.user
     context={}
+    print('POST Message: ', request.POST)
     print('GET Message: ', request.GET)
-    if(request.method == 'POST'):
+    if(request.method == 'POST' and 'submit' in request.POST):
         user=request.user
         start_time=request.POST['start_time']
         end_time=request.POST['end_time']
@@ -140,6 +141,12 @@ def show_days(request):
     
     #[entry[x],entry[y]=entry[y],entry[x] for x,y in range(7)]
     context['entries']=entries
+    
+    today = datetime.datetime.now()
+    for entry in entries:
+        if(today.day==entry.start_time.day and today.month==entry.start_time.month and today.year==entry.start_time.year):
+            context['todayid']=entry.entry_id
+    
     #print(context['entries'][0].start_time.weekday())
     #print(context['entries'][0].end_time-context['entries'][0].start_time)
     return HttpResponse(template.render(context, request))

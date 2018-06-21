@@ -33,14 +33,16 @@ def getWeekWorkSum(start_time,user):
 def getMonthWorkSum(start_time, user):
     month = start_time.month
     year = start_time.year
+    todayid=None
     ids=[]
     timedeltas=[]
-    
+    today=datetime.datetime.now()
     queryset = TimePlot.objects.filter(user=user).filter(start_time__year=year).filter(start_time__month=month)
     
     for entry in queryset:
         ids.append(entry.entry_id)
         timedeltas.append(entry.end_time-entry.start_time)
+        
     xsum=0
     #print(len(timedeltas))
     for x in timedeltas:

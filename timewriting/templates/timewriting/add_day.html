@@ -27,14 +27,17 @@
 		<input id='location2' class="form-control" type='text' name='loc2' value='{{entry.location2}}'></input><br>
 		
 	</div>
-	<div class='form-group col-md-6'>
+	<!--<div class='form-group col-md-6'>
 		<label for='edit'>Editmode</label> 
 		<input id='edit' type='checkbox'  value='' onclick="return false;" {%if entry%}checked{%endif%}></input>
-	</div>
+	</div>-->
 	<div class='form-group col-md-6'>
 	 	<input type='hidden' name='editmode' value='{%if entry%}{{entry.entry_id}}{%else%}False{%endif%}'></input><br>
-		<input class='btn btn-primary' type='submit' value='Submit' />
+		<button class='btn btn-primary' type='submit' name='submit' value='Submit'>Submit</button>
+		<button class='btn btn-primary' type='rest' value='reset' name='reset' >Cancel</button>
+		<!--<a href={%url 'your_days'%}><button class='btn btn-primary'>Abort</button></a>-->
 	</div>
 </form>
+
 
 {%endblock%}
